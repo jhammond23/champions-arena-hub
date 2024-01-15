@@ -24,6 +24,22 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import GuildApp from './components/pages/GuildApp';
 import Assets from './components/pages/Assets';
+import ActionSequence from './components/ActionSequence';
+import NewHome from './components/pages/NewHome';
+import Scene from './components/pages/NewHome';
+import InteractiveDeedPage from './components/InteractiveDeedPage';
+import { heroes } from './components/Heroes';
+import HeroPage from './components/pages/Champions';
+import Estates from './components/pages/DisplayDeeds';
+import Arena from './components/pages/Arena';
+import CashShop from './components/pages/CashShop';
+import Campaign from './components/pages/Campaign';
+import Mayhem from './components/pages/Mayhem';
+import TowerOfTrials from './components/pages/TowerofTrials';
+import ThankYouPage from './components/pages/ThankYou';
+
+
+
 
 function App() {
 
@@ -56,7 +72,15 @@ function App() {
   useEffect(() => {
     if (hasMounted) {
       if (location.pathname === '/') {
-        toast.info(`03/21/2023 UPDATE: Added a page for guild recruitment!`, {
+        toast.info((
+          <div>
+            Support our efforts by using{' '}
+            <a href="http://classycrypto.com/galagames" style={{ color: '#4e9af1' }}>
+              Classy's link
+            </a>
+            {' '}when buying from Gala store {'<3'}
+          </div>
+        ), {
           position: toast.POSITION.BOTTOM_RIGHT,
           style : {
             backgroundColor: '#333',
@@ -64,7 +88,7 @@ function App() {
             borderRadius: '4px',
           },
           onClick: () => {
-            navigate('/guilds');
+            navigate('/thank-you');
           }
         });
       } else if (location.pathname === '/exemplars') {
@@ -80,25 +104,32 @@ function App() {
       }
     }
   }, [location.pathname, navigate, hasMounted]);
+  
+  
+  
 
   return (
-    <div id='parent'>
+    <>
+      <div id='parent'>
       <ToastContainer />
       <DropdownNavbar />
       <div className='down80'>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route className='r-background' path='/exemplars' element={<DisplayRace />} />
-          <Route path='/deeds' element={<DisplayDeeds />} />
-          <Route path='/buildings' element={<DisplayBuildings />} />
           <Route path='/about' element={<About />} />
           <Route path='/assets' element={<Assets /> } />
-          <Route path='/monsters' element={<Displaymonsters /> } />
-          <Route path='/others' element={<Others /> } />
           <Route path='/community' element={<Guilds /> } />
-          <Route path='/guilds' element={<Guilds /> } />
-          <Route path='/creators' element={<Creators /> } />
-          <Route path='/guild-application' element={<GuildApp /> } />
+          <Route path='/estates' element={<Estates />} />
+          <Route path="/champions" element={<HeroPage heroes={heroes} />} />
+          <Route path='/arena' element={<Arena />} />
+          <Route path='/cash-shop' element={<CashShop />} />
+          <Route path='/campaign' element={<Campaign />} />
+          <Route path='/mayhem' element={<Mayhem />} />
+          <Route path='/tower-of-trials' element={<TowerOfTrials />} />
+          <Route path='/thank-you' element={<ThankYouPage />} />
+
+
         </Routes>
       </div>
       {showButton && (
@@ -107,6 +138,8 @@ function App() {
         </button>
       )}
     </div>
+    </>
+
   );
 }
 

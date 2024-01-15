@@ -30,10 +30,11 @@ export default function Assets () {
         <section>
           <div id="menu">
               <div id="menu-items">
-                  <Link to="/buildings" class='menu-item one' onMouseEnter={() => setIndex(1)}>BUILDINGS</Link>
-                  <Link to="/deeds" class="menu-item two" onMouseEnter={() => setIndex(2)}>DEEDS</Link>
-                  <Link class="menu-item three" to="/exemplars" onMouseEnter={() => setIndex(3)}>EXEMPLARS</Link>
-                  <Link to="/others" class='menu-item four' onMouseEnter={() => setIndex(4)}>OTHERS</Link>
+                  <Link to="/estates" class='menu-item one' onMouseEnter={() => setIndex(1)}>ESTATES</Link>
+                  <Link to="/arena" class="menu-item two" onMouseEnter={() => setIndex(2)}>ARENA</Link>
+                  <Link class="menu-item three" to="/mayhem" onMouseEnter={() => setIndex(3)}>MAYHEM</Link>
+                  <Link to="/campaign" class='menu-item four' onMouseEnter={() => setIndex(4)}>CAMPAIGN</Link>
+                  <Link to="/tower-of-trials" class='menu-item five' onMouseEnter={() => setIndex(4)}>TOWER OF TRIALS</Link>
               </div>
               <div className="menu-background-pattern"></div>
               <div id="menu-background-imageAssets"></div>

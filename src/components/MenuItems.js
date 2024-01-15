@@ -1,29 +1,34 @@
 const MenuItems = [
   {
-    title: 'Buildings',
-    path: '/buildings',
+    title: 'Estates',
+    path: '/estates',
     cName: 'dropdown-link'
   },
   {
-    title: 'Deeds',
-    path: '/deeds',
+    title: 'Arena',
+    path: '/arena',
     cName: 'dropdown-link'
   },
   {
-    title: 'Exemplars',
-    path: '/exemplars',
+    title: 'Campaign',
+    path: '/campaign',
     cName: 'dropdown-link'
   },
   {
-    title: 'Others',
-    path: '/others',
+    title: 'Mayhem',
+    path: '/mayhem',
     cName: 'dropdown-link'
   },
+  {
+    title: 'Tower of Trials',
+    path: '/tower-of-trials',
+    cName: 'dropdown-link'
+  }
 ];
 const MenuItems2 = [
   {
-    title: 'Guilds',
-    path: '/guilds',
+    title: 'Cash Shop',
+    path: '/cash-shop',
     cName: 'dropdown-link'
   },
   {
@@ -33,4 +38,4 @@ const MenuItems2 = [
   }
 ]
 
-export { MenuItems, MenuItems2}
+export { MenuItems, MenuItems2 }

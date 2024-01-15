@@ -1,0 +1,657 @@
+:root {
+  --navy: #00568b;
+  --yellow: #e1b73f;
+  --white: #d5f2fe;
+}
+
+
+/* Common card styles */
+.card {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  border: 3px solid #111;
+  padding: 5rem;
+  border-radius: 10%;
+  margin: 1vh 2vw;
+  border: 4px solid #e1b73f;
+  width: 175px;
+  transition: transform ease .25s;
+  transform-style: preserve-3d;
+  height: 280px;
+  box-shadow: 0 0 14px 3px black;
+  height: 175px;
+  width: 100px;
+  background-size: cover;
+  box-shadow: 0 0 20px #5cb1e8;
+  margin: 20px 40px;
+  color: #e1b73f;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.4rem;
+
+}
+
+.card span {
+  position: absolute;
+  bottom: 70px;
+  z-index: 101;
+  width: 100%;
+  transform: translateX(-50%);
+  text-shadow: 0 0 4px #000;
+}
+
+/*
+.card::after {
+  content: '';
+  position: absolute;
+  bottom: 25px;
+  left: -6px;
+  width: calc(100% + 12px);
+  height: 20%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10%;
+  z-index: 100;
+  background-color: #e1b73f;
+  box-shadow: 0 0 8px #000;
+}
+*/
+
+
+a {
+  text-decoration: none;
+
+}
+
+/* Individual card backgrounds can be added using specific classes like .r-Estates, .r-Arena etc. */
+/* This is just an example, you might want to replace '/path/to/estates/image.jpg' with the actual path of your images */
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow-x: hidden;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, .9)), url('../media/bg3.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+.card div {
+  color: white; /* Or any color you prefer */
+  text-decoration: none;
+  font-weight: bold;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.page {
+  background-color: #111;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.99)), /* This will overlay a semi-transparent black to dim the image */
+    url('../media/bg.jpg'); /* Assuming main.jpg is in a media directory relative to your CSS */
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;  /* This ensures the background covers the full viewport height */
+  width: 100%;
+  z-index: -1;
+}
+
+h1 {
+  margin: 0px;
+
+}
+
+.caHub {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 5% 15%;
+  color: #ecbc62;
+  font-size: clamp(2rem, 9vw, 4rem);
+  font-family: 'PenumbraSerifStd-Regular';
+  text-align: center;
+  background-color: #11111190;
+  padding: 5%;
+  border-radius: 5px;
+  box-shadow: 0 0 40px #111;
+  border: 2px solid #ecbc62;
+
+}
+
+.header {
+  color: #e1b73f;
+  text-shadow: 0 0 10px #5cb1e8;
+  text-align: center;
+}
+
+h2.header {
+  font-size: 2.5rem;
+  position: relative;
+}
+
+h2.header::after, h2.header::before {
+  content: '';
+  width: 50px;
+  height: 50px;
+  background-image: url('../media/arrow.png');
+  background-size: cover; /* add this to adjust the image size */
+  position: absolute;
+  z-index: 0;
+}
+
+h2.header::before {
+  transform: rotate(180deg) translateX(100%);
+}
+
+
+.homeh2 { 
+  font-size: 2rem;
+  margin-bottom: 3%
+
+}
+
+/* Herocard styles */
+
+.Tilt-inner {
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.Tilt-inner img {
+  width: 100px;
+  height: 100px;
+}
+
+.Tilt-inner h3 {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+/* Herodetail styles */
+
+.hero-detail {
+  padding: 20px;
+}
+
+.hero-detail img {
+  width: 200px;
+  height: 200px;
+}
+
+.hero-detail h2 {
+  font-size: 1.5rem;
+  margin-top: 15px;
+}
+
+.active-card {
+  position: relative;
+  scale: .9;
+  box-shadow: 0 0 40px 10px #fff !important;
+  transition: box-shadow 0.45s ease 0.2s;  /* Duration, timing function, delay */
+}
+
+
+.arrow {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.arrow img {
+  width: 30px;
+  rotate: 90deg;
+}
+
+.active-card .arrow {
+  opacity: 1;
+  animation: hoverArrow 1s infinite alternate;
+}
+
+@keyframes hoverArrow {
+  0% { top: -40px; }
+  100% { top: -50px; }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.card-spin {
+  animation: spin .45s ease-in-out;
+}
+
+
+.green {
+    color: #00ff00;
+}
+
+.orange,
+.brown {
+    color: #ffa500;
+}
+
+.attackName {
+    font-size: 1.6rem;
+    margin-bottom: 0;
+    color: #e1b73f;
+}
+
+.yellow {
+  color: #e1b73f;
+  font-weight: bold;
+}
+
+.characterCard {
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .characterHeader {
+    text-align: center;
+  }
+  
+  .characterAbilities {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .primaryAbility,
+  .secondaryAbility,
+  .tertiaryAbility,
+  .passive {
+    padding: 8px;
+    width: 100%;
+    
+  }
+  .floating-card {
+    width: 80%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75));
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    border-radius: 25px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 
+      0 14px 28px rgba(0, 0, 0, 0.25), 
+      0 10px 10px rgba(0, 0, 0, 0.22), 
+      inset 0 0 50px rgba(0, 0, 0, 0.2),
+      0 2px 2px rgba(0, 0, 0, 0.1);
+    border: 8px solid #e1b73f;
+    background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100%);
+    transition: all 0.3s ease;
+    margin: 0vh auto 300px auto;
+    scale: .9;
+
+
+  }
+  
+  .floating-card::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.5), transparent);
+    bottom: -10px;
+    left: 0;
+    z-index: -1;
+    opacity: 0.7;
+  }
+  
+  /* For tablet screens */
+  @media screen and (max-width: 1400px) {
+    .floating-card {
+      scale: 0.95; /* This will make the card 80% of the screen width */
+    }
+  }
+  
+  /* For mobile screens */
+  @media screen and (max-width: 480px) {
+
+  }
+  
+  
+  
+@keyframes float {
+  0% {
+    transform: translateY(0);
+    box-shadow: 
+      0 10px 20px rgba(0, 0, 0, 0.2), 
+      0 6px 6px rgba(0, 0, 0, 0.23), 
+      inset 0 0 50px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    transform: translateY(-20px);
+    box-shadow: 
+      0 15px 25px rgba(0, 0, 0, 0.2), 
+      0 10px 10px rgba(0, 0, 0, 0.23), 
+      inset 0 0 60px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    transform: translateY(0);
+    box-shadow: 
+      0 10px 20px rgba(0, 0, 0, 0.2), 
+      0 6px 6px rgba(0, 0, 0, 0.23), 
+      inset 0 0 50px rgba(0, 0, 0, 0.1);
+  }
+}
+
+  
+  .name-style {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #e1b73f;
+    border: 3px solid #e1b73f;
+    box-shadow: 0 0 10px #5cb1e8;
+    border-radius: 15px;
+    background-color: #11111190;
+  }
+  
+  .image-style {
+    width: 70%;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px #5cb1e8;
+    border: 6px solid #e1b73f;  }
+  
+  .abilities-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .abilities-container button {
+    width: 50px;
+    height: 50px;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), rgba(0,0,0,0.8));
+    color: #e1b73f;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 
+      0 4px 8px rgba(0, 0, 0, 0.25),
+      0 2px 2px rgba(0, 0, 0, 0.22),
+      inset 0 0 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid #e1b73f;
+    transition: all 0.3s ease;
+  }
+  
+  
+  
+  /* Additional class for 2-star button */
+  .abilities-container .two-star::before,
+  .abilities-container .two-star::after {
+    content: "⭐";
+    position: absolute;
+    font-size: 14px;
+  }
+  
+  .abilities-container .two-star::before {
+    top: 2px;
+    left: 5px;
+  }
+  
+  .abilities-container .two-star::after {
+    bottom: 2px;
+    right: 5px;
+  }
+  
+  /* Additional class for 3-star button */
+  .abilities-container .three-star::before,
+  .abilities-container .three-star::after {
+    content: "⭐";
+    position: absolute;
+    font-size: 12px;
+  }
+  
+  .abilities-container .three-star::before {
+    top: 2px;
+    left: 5px;
+  }
+  
+  .abilities-container .three-star::after {
+    bottom: 2px;
+    right: 5px;
+  }
+  
+  .abilities-container button.active {
+    border: 3px solid #e1b73f;
+    box-shadow: 0 0 10px #5cb1e8;
+    background: white;
+  }
+  
+  .ability-info, .stats-section {
+    display: flex;
+    padding: 10px;
+    border-radius: 25px;
+    background-color: #111111cc;
+    color: white;
+    box-shadow: 0 0 10px #5cb1e8;
+    border: 3px solid #e1b73f;
+    font-size: 1.1rem;
+  }
+
+  .stats-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: .5fr .5fr .5fr;
+    gap: 2px;
+    font-size: 1rem;
+    margin-top: 5%;
+    padding: 15px;
+  }
+
+  .passiveBubble {
+    font-size: 1.75rem;
+    font-weight: bold;
+  }
+
+  .show-menu-button {
+    position: fixed;
+    bottom: 0px;
+    background-color: #333; /* Using the gold color from the theme */
+    color: #111; /* Dark text for contrast */
+    border: 2px solid #ecbc62; /* A slightly brighter gold border for distinction */
+    border-radius: 50px;
+    padding: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 3;
+    transition: all .3s ease; /* Adding transition for hover effect */
+    width: 50px;
+    height: 50px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    color: #ecbc62;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+
+}
+
+.hamburger-line {
+  width: 30px;  /* Adjust width as per your preference */
+  height: 2px;  /* Adjust height for thicker lines */
+  background-color: #ecbc62;
+  margin: 3px 0;  /* Adjust for more or less spacing between lines */
+}
+
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+.heroDetailContainer.hide::after {
+  content: none;
+}
+
+.newHeroesContainer.hide {
+  display: none;
+}
+
+.r-subHeader {
+  color: #ecbc62;
+  display: block;
+  width: 100%;
+}
+
+/* Tables */
+
+th, td {
+  border: 1px solid #ecbc62;
+  padding: 3px;
+}
+
+table {
+  border: 2px solid #ecbc62;
+  margin-bottom: 5%;
+}
+
+th {
+  color: #ecbc62;
+}
+
+.blue {
+  color: #90d499;
+  font-weight: bold;
+}
+
+/* For screens > 1400px */
+@media screen and (min-width: 1401px) {
+    .heroDetailContainer {
+        animation-name: none; /* Disables animations */
+    }
+    .show-menu-button {
+      display: none;
+  }
+  
+.scrollable-row {
+  position: relative;
+  display: flex; /* make it a flex container */
+  overflow-x: auto; /* horizontal scrolling */
+  overflow-y: hidden; /* no vertical scrolling */
+  white-space: nowrap; /* prevent wrapping */
+}
+
+
+.scrollable-row::after {
+  content: none; /* remove the gradient */
+}
+
+.scrollable-row > * {
+  flex: 0 0 auto; /* do not grow, do not shrink, and base size on content */
+  white-space: normal; /* allow content inside to wrap if needed */
+}
+
+
+.rarity-row {
+  margin-bottom: 20px;
+}
+
+}
+
+/* For screens <= 1400px */
+@media screen and (max-width: 1400px) {
+
+    .searchBar, .heroDetailContainer {
+        width: 100%;
+    }
+
+    .heroDetailContainer {
+        display: none; /* initially hidden */
+    }
+
+    .cardParent.hide {
+        animation: slideDown 0.5s forwards;
+    }
+
+    .heroDetailContainer.show, .newHeroesContainer.show {
+        display: block; /* shown after a card is selected */
+        animation-name: slideDown;
+    }
+
+      .heroDetailContainer.show, .newHeroesContainer.show {
+        animation-name: slideDown;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+    }
+
+    .heroDetailContainer.hide, .newHeroesContainer.hide {
+        display: none;
+        z-index: -1;
+        opacity: 0;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+    }
+    
+    .name-style {
+      font-size: 1.6rem;
+      padding: 10px;
+    }
+    .attackName {
+      font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+  .caHub {
+    display: flex;
+  }
+}
+
+
+.heroDetailContainer.show::after {
+  display: none !important;
+}
+
+.up-arrow {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 15px solid #ecbc62; /* Color of the arrow */
+}
+
+.r-table td {
+  color: white;
+}

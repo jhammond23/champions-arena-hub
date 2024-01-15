@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "mirandus-hub"
-  }
+    "default": "champions-arena-hub",
+    "CA Hub": "champions-arena-hub"
+  },
+  "targets": {},
+  "etags": {}
 }

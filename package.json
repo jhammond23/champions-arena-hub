@@ -1,29 +1,37 @@
 {
-  "homepage": "https://mirandus-hub.web.app/",
-  "name": "react-mirandus-page",
+  "homepage": "https://champions-arena-hub.web.app/",
+  "name": "react-CAH-page",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-three/drei": "^9.74.6",
+    "@react-three/fiber": "^8.13.0",
+    "@react-three/postprocessing": "^2.14.9",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.3.4",
+    "cors": "^2.8.5",
     "emailjs-com": "^3.2.0",
+    "express": "^4.18.2",
+    "firebase": "^10.7.1",
     "history": "^5.3.0",
     "mdb-react-ui-kit": "^5.1.0",
-    "react": "^18.2.0",
+    "postprocessing": "^6.31.0",
     "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-inner-image-zoom": "^3.0.2",
-    "react-parallax-tilt": "^1.7.72",
+    "react-parallax-tilt": "^1.7.162",
     "react-player": "^2.11.0",
     "react-router-dom": "^6.4.4",
     "react-scripts": "^5.0.1",
     "react-simple-typewriter": "^5.0.1",
     "react-spring-3d-carousel": "^1.3.2",
-    "react-toastify": "^9.1.1",
+    "react-toastify": "^9.1.3",
     "react-transition-group": "^4.4.5",
     "styled-components": "^5.3.6",
+    "three-glow-mesh": "^0.1.2",
     "typewriter-effect": "^2.19.0",
     "web-vitals": "^2.1.4"
   },
@@ -56,5 +64,17 @@
   "devDependencies": {
     "css-loader": "^6.7.2",
     "gh-pages": "^4.0.0"
+  },
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jhammond23/champions-arena-hub.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jhammond23/champions-arena-hub/issues"
   }
 }

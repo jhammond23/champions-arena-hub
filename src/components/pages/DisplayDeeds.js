@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import Tilt from 'react-parallax-tilt';
 import { useRef } from 'react';
-import { Homestead } from '../deeds/Homestead';
-import { Outpost } from '../deeds/Outpost';
-import { Hamlet } from '../deeds/Hamlets';
-import { Village } from '../deeds/Villages';
-import { Town } from '../deeds/Towns';
+import Alter from '../deeds/Alter';
+import  Castle from '../deeds/Castle';
+import EstateShop from '../deeds/EstateShop';
+import NoticeBoard from '../deeds/NoticeBoard';
+import TradeMarket from '../deeds/TradeMarket';
 
-const DisplayDeeds = () => {
+const Estates = () => {
 
     const [myDeed, setmyDeed] = useState('');
-    const deeds = ['Homestead', 'Outpost', 'Hamlets', 'Villages', 'Towns']
+    const deeds = ['Alter of Champions', 'Castle', 'Trade Market', 'Notice Board', 'Estate Shop']
     const ref = useRef(null);
     const scroll = (scrollOffset) => {
         ref.current.scrollLeft += scrollOffset;
@@ -21,7 +21,7 @@ const DisplayDeeds = () => {
             <div className='r-deedsBG'>
             <br />
 
-                <header className='r-deedSelectorTitle'>EED</header>
+                <header className='r-deedSelectorTitle'>state</header>
 
 
                 <br />
@@ -46,11 +46,11 @@ const DisplayDeeds = () => {
                     </div>
                 </div>
                 <div className='r-background'>
-                    {myDeed === 'Homestead' && <Homestead />}
-                    {myDeed === 'Outpost' && <Outpost />}
-                    {myDeed === 'Hamlets' && <Hamlet />}
-                    {myDeed === 'Villages' && <Village />}
-                    {myDeed === 'Towns' && <Town />}
+                    {myDeed === 'Alter of Champions' && <Alter />}
+                    {myDeed === 'Castle' && <Castle />}
+                    {myDeed === 'Trade Market' && <TradeMarket />}
+                    {myDeed === 'Estate Shop' && <EstateShop />}
+                    {myDeed === 'Notice Board' && <NoticeBoard />}
 
                 </div>
             </div>
@@ -58,4 +58,4 @@ const DisplayDeeds = () => {
     )
 }
 
-export default DisplayDeeds
+export default Estates

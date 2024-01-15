@@ -6,6 +6,8 @@ import DisplayBubbles from '../DisplayBubbles';
 import outf from '../NFTpics/buildings/Outfitter/outf.png';
 import largOutf from '../NFTpics/buildings/Outfitter/largOutf.png';
 import Building from '../Building';
+import clotStan from '../NFTpics/buildings/Outfitter/clotStan.jpg';
+
 
 
 
@@ -27,6 +29,15 @@ const outfitters = [
         total : 0,
         Img : largOutf,
         size : '10x20',
+    },
+    {
+        id : 'Outfitter3',
+        name : 'Cloth Stand',
+        description : `(5x5) A basic selection of wool and linen goods are found here.`,
+        rarity : 'Uncommon',
+        total : 8,
+        Img : clotStan,
+        size : '5x5',
     }
 ]
 

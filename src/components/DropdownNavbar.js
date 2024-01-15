@@ -4,6 +4,26 @@ import './Navbar.css';
 import Dropdown from './Dropdown';
 import { useLocation } from 'react-router-dom';
 import Dropdown2 from './Dropdown2';
+import axios from "axios";
+
+function useVisitorCount() {
+  const [numVisitors, setNumVisitors] = useState(0);
+
+  useEffect(() => {
+    const fetchVisitorCount = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/visitors");
+        setNumVisitors(response.data.count);
+      } catch (error) {
+        console.error("Error fetching visitor count:", error);
+      }
+    };
+
+    fetchVisitorCount();
+  }, []);
+
+  return numVisitors;
+}
 
 
 function Navbar() {
@@ -15,7 +35,16 @@ function Navbar() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
   const [letterRotations, setLetterRotations] = useState({});
+  const [showVisitorCount, setShowVisitorCount] = useState(true);
+  const visitorCount = useVisitorCount();
 
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setShowVisitorCount(false);
+    }, 8000);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   const handleResize = () => {
     if (window.innerWidth >= 1200) {
@@ -32,22 +61,22 @@ function Navbar() {
 
   function handleNavLinkHover(e, navLinkId) {
     if (navLinkId !== 'logo' && e.target !== e.currentTarget) return;
-  
+
     const linkText = e.target.textContent;
     const rotations = {};
-  
+
     for (let i = 0; i < linkText.length; i++) {
       rotations[i] = getRandomRotation(-15, 15);
     }
-  
+
     setLetterRotations({ ...letterRotations, [navLinkId]: rotations });
   }
-  
+
 
   function handleNavLinkMouseLeave(navLinkId, clearAll = false) {
     setLetterRotations((prevState) => {
       const newState = { ...prevState };
-  
+
       if (clearAll) {
         for (let i = 0; i < 'MIRANDUS HUB'.length; i++) {
           newState[`logo${i}`] = {};
@@ -55,11 +84,11 @@ function Navbar() {
       } else {
         newState[navLinkId] = {};
       }
-  
+
       return newState;
     });
   }
-  
+
 
   useEffect(() => {
     // Scroll to top on route change
@@ -74,39 +103,40 @@ function Navbar() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-  
+
   return (
     <>
       <nav className='navbar'>
         <div className='logoContainer'>
-        <Link
-          to='/'
-          className='navbar-logo'
-          onClick={closeMobileMenu}
-          onMouseLeave={() => handleNavLinkMouseLeave(null, true)}
-        >
-          {Array.from('MIRANDUS HUB').map((letter, index) => {
-            if (letter === ' ') {
-              return ' ';
-            }
+          <Link
+            to='/'
+            className='navbar-logo'
+            onClick={closeMobileMenu}
+            onMouseLeave={() => handleNavLinkMouseLeave(null, true)}
+          >
+            {Array.from('CHAMPIONS ARENA HUB').map((letter, index) => {
+              if (letter === ' ') {
+                return ' ';
+              }
 
-            const navLinkId = `logo${index}`;
+              const navLinkId = `logo${index}`;
 
-            return (
-              <span
-                key={index}
-                className="rotated-letter logoLetter"
-                style={{
-                  transform: `rotate(${(letterRotations[navLinkId] && letterRotations[navLinkId][0]) || 0}deg)`
-                }}
-                onMouseEnter={(e) => handleNavLinkHover(e, navLinkId)}
-                onMouseLeave={() => handleNavLinkMouseLeave(navLinkId)}
-              >
-                {letter}
-              </span>
-            );
-          })}
-        </Link>
+              return (
+                <span
+                  key={index}
+                  className="rotated-letter logoLetter"
+                  style={{
+                    transform: `rotate(${(letterRotations[navLinkId] && letterRotations[navLinkId][0]) || 0}deg)`
+                  }}
+                  onMouseEnter={(e) => handleNavLinkHover(e, navLinkId)}
+                  onMouseLeave={() => handleNavLinkMouseLeave(navLinkId)}
+                >
+                  {letter}
+                </span>
+              );
+            })}
+          </Link>
+          {showVisitorCount && <div className='visitor-count'>has helped: {visitorCount}</div>}
 
         </div>
 
@@ -122,20 +152,41 @@ function Navbar() {
               onMouseLeave={() => handleNavLinkMouseLeave('home')}
               onClick={closeMobileMenu}
             >
-            {Array.from('Home').map((letter, index) => (
-              <span
-                key={index}
-                className="rotated-letter"
-                style={{
-                  transform: `rotate(${(letterRotations['home'] && letterRotations['home'][index]) || 0}deg)`
-                }}
-              >
-                {letter}
-              </span>
-            ))}
-          </Link>
+              {Array.from('Home').map((letter, index) => (
+                <span
+                  key={index}
+                  className="rotated-letter"
+                  style={{
+                    transform: `rotate(${(letterRotations['home'] && letterRotations['home'][index]) || 0}deg)`
+                  }}
+                >
+                  {letter}
+                </span>
+              ))}
+            </Link>
           </li>
 
+          <li className={`nav-item ${navItemAnimation}`}>
+            <Link
+              to='/champions'
+              id='nav-links'
+              onMouseEnter={(e) => handleNavLinkHover(e, 'champions')}
+              onMouseLeave={() => handleNavLinkMouseLeave('champions')}
+              onClick={closeMobileMenu}
+            >
+              {Array.from('champions').map((letter, index) => (
+                <span
+                  key={index}
+                  className="rotated-letter"
+                  style={{
+                    transform: `rotate(${(letterRotations['champions'] && letterRotations['champions'][index]) || 0}deg)`
+                  }}
+                >
+                  {letter}
+                </span>
+              ))}
+            </Link>
+          </li>
 
           <li
             className={`nav-item ${navItemAnimation}`}
@@ -155,18 +206,17 @@ function Navbar() {
             }}
           >
             <Link
-              to='/'
               id='nav-links'
-              onMouseEnter={(e) => handleNavLinkHover(e, 'assets')}
-              onMouseLeave={() => handleNavLinkMouseLeave('assets')}
+              onMouseEnter={(e) => handleNavLinkHover(e, 'modes')}
+              onMouseLeave={() => handleNavLinkMouseLeave('modes')}
               onClick={closeMobileMenu}
             >
-              {Array.from('assets').map((letter, index) => (
+              {Array.from('modes').map((letter, index) => (
                 <span
                   key={index}
                   className="rotated-letter"
                   style={{
-                    transform: `rotate(${(letterRotations['assets'] && letterRotations['assets'][index]) || 0}deg)`
+                    transform: `rotate(${(letterRotations['modes'] && letterRotations['modes'][index]) || 0}deg)`
                   }}
                 >
                   {letter}
@@ -176,57 +226,36 @@ function Navbar() {
             </Link>
             {dropdown && (
               <Dropdown
-                handleNavLinkHover={(e) => handleNavLinkHover(e, 'assets')}
-                handleNavLinkMouseLeave={() => handleNavLinkMouseLeave('assets')}
+                handleNavLinkHover={(e) => handleNavLinkHover(e, 'modes')}
+                handleNavLinkMouseLeave={() => handleNavLinkMouseLeave('modes')}
               />
             )}
           </li>
 
           <li className={`nav-item ${navItemAnimation}`}>
             <Link
-              to='/monsters'
+              to='/cash-shop'
               id='nav-links'
-              onMouseEnter={(e) => handleNavLinkHover(e, 'monsters')}
-              onMouseLeave={() => handleNavLinkMouseLeave('monsters')}
+              onMouseEnter={(e) => handleNavLinkHover(e, 'Shop')}
+              onMouseLeave={() => handleNavLinkMouseLeave('Shop')}
               onClick={closeMobileMenu}
             >
-              {Array.from('monsters').map((letter, index) => (
+              {Array.from('Shop').map((letter, index) => (
                 <span
                   key={index}
                   className="rotated-letter"
                   style={{
-                    transform: `rotate(${(letterRotations['monsters'] && letterRotations['monsters'][index]) || 0}deg)`
+                    transform: `rotate(${(letterRotations['Shop'] && letterRotations['Shop'][index]) || 0}deg)`
                   }}
                 >
                   {letter}
                 </span>
               ))}
             </Link>
-          </li>
-          <li className={`nav-item ${navItemAnimation}`}>
-            <Link
-              to='/community'
-              id='nav-links'
-              onMouseEnter={(e) => handleNavLinkHover(e, 'community')}
-              onMouseLeave={() => handleNavLinkMouseLeave('community')}
-              onClick={closeMobileMenu}
-            >
-            {Array.from('Community').map((letter, index) => (
-              <span
-                key={index}
-                className="rotated-letter"
-                style={{
-                  transform: `rotate(${(letterRotations['community'] && letterRotations['community'][index]) || 0}deg)`
-                }}
-              >
-                {letter}
-              </span>
-            ))}
-            </Link>
             {dropdown2 && (
               <Dropdown2
-                handleNavLinkHover={(e) => handleNavLinkHover(e, 'community')}
-                handleNavLinkMouseLeave={() => handleNavLinkMouseLeave('community')}
+                handleNavLinkHover={(e) => handleNavLinkHover(e, 'Shop')}
+                handleNavLinkMouseLeave={() => handleNavLinkMouseLeave('Shop')}
               />
             )}
           </li>
