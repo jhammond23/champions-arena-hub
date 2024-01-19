@@ -10,7 +10,7 @@ import TradeMarket from '../deeds/TradeMarket';
 const Estates = () => {
 
     const [myDeed, setmyDeed] = useState('');
-    const deeds = ['Alter of Champions', 'Castle', 'Trade Market', 'Notice Board', 'Estate Shop']
+    const deeds = ['Altar of Champions', 'Castle', 'Trade Market', 'Notice Board', 'Estate Shop']
     const ref = useRef(null);
     const scroll = (scrollOffset) => {
         ref.current.scrollLeft += scrollOffset;
@@ -46,7 +46,7 @@ const Estates = () => {
                     </div>
                 </div>
                 <div className='r-background'>
-                    {myDeed === 'Alter of Champions' && <Alter />}
+                    {myDeed === 'Altar of Champions' && <Alter />}
                     {myDeed === 'Castle' && <Castle />}
                     {myDeed === 'Trade Market' && <TradeMarket />}
                     {myDeed === 'Estate Shop' && <EstateShop />}
